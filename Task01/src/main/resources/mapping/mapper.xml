@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtt/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnshu.dao.StudentDao">
+    <resultMap id="studentMap" type="com.jnshu.model.Student">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="arrival_time" property="arrival_time" jdbcType="VARCHAR"/>
+        <result column="qq" property="qq" jdbcType="VARCHAR"/>
+        <result column="study_type" property="study_type" jdbcType="VARCHAR"/>
+        <result column="number_online" property="number_online" jdbcType="VARCHAR"/>
+        <result column="diary_link" property="diary_link" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="vow" property="vow" jdbcType="VARCHAR"/>
+        <result column="assessor" property="assessor" jdbcType="VARCHAR"/>
+        <result column="referee" property="referee" jdbcType="VARCHAR"/>
+        <result column="create_at" property="create_at" jdbcType="BIGINT"/>
+        <result column="update_at" property="update_at" jdbcType="BIGINT"/>
+        <result column="vocation" property="vocation" jdbcType="VARCHAR"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="fin" property="fin" jdbcType="SMALLINT"/>
+    </resultMap>
+    <insert id="addStudent" parameterType="com.jnshu.model.Student">
+        insert into student(name,password,arrival_time,qq,study_type,number_online,diary_link,school,vow,assessor,referee,create_at,vocation,introduce)
+        values (#{name},
+        #{password},
+        #{arrival_time},
+        #{qq},
+        #{study_type},
+        #{number_online},
+        #{diary_link},
+        #{school},
+        #{vow},
+        #{assessor},
+        #{referee},
+        #{create_at},
+        #{vocation},
+        #{introduce},
+        #{fin});
+    </insert>
+    <delete id="deleteStudent" parameterType="int">
+        delete from student where id=#{id}
+    </delete>
+    <update id="updateStudent" parameterType="com.jnshu.model.Student">
+        update student set
+        name=#{name},
+        password=#{password},
+        arrival_time=#{arrival_time},
+        qq=#{qq},
+        study_type=#{study_type},
+        number_online=#{number_online},
+        diary_link=#{diary_link},
+        school=#{school},
+        vow=#{vow},
+        assessor=#{assessor},
+        referee=#{referee},
+        update_at=#{update_at},
+        vocation=#{vocation},
+        introduce=#{introduce},
+        fin=#{fin}
+        where id=#{id}
+
+    </update>
+    <select id="getStudentById" parameterType="int" resultType="com.jnshu.model.Student">
+        select * from student where id=#{id}
+    </select>
+    <select id="getAllStudent" resultMap="studentMap">
+        select * from student
+    </select>
+    <select id="getByNameAndPwd" parameterType="String" resultMap="studentMap">
+        select * from student where name=#{name} and password=#{password}
+    </select>
+    <select id="getStudentCount" resultType="long">
+        select count(*) from student
+    </select>
+    <select id="getStudentByFin" resultMap="studentMap" parameterType="int">
+        select * from student where fin=#{fin}
+    </select>
+    <select id="getStudentIdList" resultType="integer">
+        select id from student
+    </select>
+</mapper>

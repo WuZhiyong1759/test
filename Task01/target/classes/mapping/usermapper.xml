@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtt/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.UserDao">
+    <insert id="insert" parameterType="com.jnshu.model.User">
+        insert into user(name,pwd) values(#{UserName},#{pwd})
+    </insert>
+    <select id="selectByNameAndPwd" parameterType="String" resultType="com.jnshu.model.User">
+        select * from user where name=#{UserName} and pwd=#{pwd}
+    </select>
+    <select id="selectById" parameterType="int" resultType="com.jnshu.model.User">
+        select *from user where id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtt/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.Vocation_msgDao">
+    <resultMap id="vocationMap" type="com.jnshu.model.Vocation_msg">
+        <id column="id" property="id" jdbcType="SMALLINT"></id>
+        <id column="vocation" property="vocation" jdbcType="VARCHAR"></id>
+        <id column="vocation_itrduc" property="vocation_itrduc" jdbcType="VARCHAR"/>
+        <id column="sill" property="sill" jdbcType="SMALLINT"/>
+        <id column="sill_liv" property="sill_liv" jdbcType="SMALLINT"/>
+        <id column="grow_cyc" property="grow_cyc" jdbcType="VARCHAR"/>
+        <id column="rare_liv" property="rare_liv" jdbcType="VARCHAR"/>
+        <id column="t1" property="t1" jdbcType="VARCHAR"/>
+        <id column="k1" property="k1" jdbcType="VARCHAR"/>
+        <id column="t2" property="t2" jdbcType="VARCHAR"/>
+        <id column="k2" property="k2" jdbcType="VARCHAR"/>
+        <id column="t3" property="t3" jdbcType="VARCHAR"/>
+        <id column="k3" property="k3" jdbcType="VARCHAR"/>
+        <id column="study_num" property="study_num" jdbcType="SMALLINT"/>
+        <id column="hint_msg" property="hint_msg" jdbcType="VARCHAR"/>
+        <id column="h1" property="h1" jdbcType="VARCHAR"/>
+        <id column="H2" property="h2" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="addVocation" parameterType="com.jnshu.model.Vocation_msg">
+        insert into vocation_msg values(#{vocation},
+                                        #{vocation_itrduc},
+                                        #{sill},
+                                        #{sill_liv},
+                                        #{grow_cyc},
+                                        #{rare_liv},
+                                        #{t1},
+                                        #{k1},
+                                        #{t2},
+                                        #{k2},
+                                        #{t3},
+                                        #{k3},
+                                        #{study_num},
+                                        #{hint_msg},
+                                        #{h1},
+                                        #{h2}
+        )
+    </insert>
+    <delete id="deleteVocationById" parameterType="int">
+        delete from vocation_msg where id=#{id}
+    </delete>
+    <update id="updateVocation" parameterType="com.jnshu.model.Vocation_msg">
+        update from vocation_msg set vocation=#{vocation},
+                                     vocation_itrduc=#{vocation_itrduc},
+                                     sill=#{sill},
+                                     sill_liv=#{sill_liv},
+                                     grow_cyc=#{grow_cyc},
+                                     rare_liv=#{rare_liv},
+                                     t1=#{t1},
+                                     t1=#{k1},
+                                     t1=#{t2},
+                                     t1=#{k2},
+                                     t1=#{t3},
+                                     t1=#{k3},
+                                     study_num=#{study_num},
+                                     hint_msg=#{hint_msg},
+                                     h1=#{h1},
+                                     h2=#{h2}
+        where id=#{id}
+    </update>
+    <select id="getVocationById" parameterType="int" resultMap="vocationMap">
+        select * from vocation_msg where id=#{id}
+    </select>
+    <select id="getAllVocation" resultMap="vocationMap">
+        select * from vocation_msg
+    </select>
+
+
+</mapper>
